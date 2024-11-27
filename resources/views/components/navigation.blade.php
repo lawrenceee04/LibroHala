@@ -14,24 +14,24 @@
 </nav>
 
 <aside id="logo-sidebar"
-       class="fixed top-0 left-0 z-40 w-64 h-screen pt-16 transition-transform -translate-x-full lg:translate-x-0 bg-sky-700 text-white"
+       class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full lg:translate-x-0 bg-sky-700 text-white"
        aria-label="Sidebar">
     <nav class="flex flex-col justify-between h-full">
         <nav class="flex flex-col">
-            <a href="/profile" class="flex items-center gap-4 p-6 hover:bg-sky-500">
+            <a href="/profile" class="flex items-center gap-4 p-6 {{ request()->is('profile') ? 'font-semibold bg-sky-500' : 'hover:font-semibold hover:bg-sky-500' }} ">
                 <img class="w-16 h-16 rounded-full" src="https://gravatar.com/avatar/HiPoCuteMoPo?d=retro" alt="">
                 <div>
                     <div class="font-semibold">{{ Auth::user()->name }}</div>
                     <div class="font-light">Admin</div>
                 </div>
             </a>
-            <a href="/dashboard" class="px-6 py-3 font-semibold bg-sky-500">Dashboard</a>
+            <a href="/dashboard" class="px-6 py-3 {{ request()->is('dashboard') ? 'font-semibold bg-sky-500' : 'hover:font-semibold hover:bg-sky-500' }} ">Dashboard</a>
             <button type="button"
                     class="px-6 py-3 text-start flex flex-row items-center gap-4 cursor-not-allowed text-gray-300"
                     aria-controls="dropdown-example" data-collapse-toggle="library-services" disabled>Library Services
                 <i class="fa-solid fa-chevron-down" style="color: #d1d5db;"></i>
             </button>
-            <ul id="library-services" class="hidden">
+            <ul id="library-services" class="{{ request()->is('libraryservices/*') ? '' : 'hidden'}}">
                 <li>
                     <a href="#"
                        class="flex items-center w-full p-2 text-white transition duration-75 pl-11 group hover:bg-sky-500 hover:font-semibold">Issue</a>
@@ -52,18 +52,18 @@
                     aria-controls="dropdown-example" data-collapse-toggle="inventory-management">Inventory Management
                 <i class="fa-solid fa-chevron-down" style="color: #ffffff;"></i>
             </button>
-            <ul id="inventory-management" class="hidden">
+            <ul id="inventory-management" class="{{ request()->is('inventory/*') ? '' : 'hidden'}}">
                 <li>
-                    <a href="#"
-                       class="flex items-center w-full p-2 text-white transition duration-75 pl-11 group hover:bg-sky-500 hover:font-semibold">Books</a>
+                    <a href="/inventory/books"
+                       class="flex items-center w-full p-2 text-white transition duration-75 pl-11 group {{ request()->is('inventory/books') ? 'font-semibold bg-sky-500' : 'hover:font-semibold hover:bg-sky-500' }} ">Books</a>
                 </li>
                 <li>
                     <a href="#"
-                       class="flex items-center w-full p-2 text-white transition duration-75 pl-11 group hover:bg-sky-500 hover:font-semibold">Journals</a>
+                       class="flex items-center w-full p-2 text-white transition duration-75 pl-11 group {{ request()->is('inventory/journals') ? 'font-semibold bg-sky-500' : 'hover:font-semibold hover:bg-sky-500' }}">Journals</a>
                 </li>
                 <li>
                     <a href="#"
-                       class="flex items-center w-full p-2 text-white transition duration-75 pl-11 group hover:bg-sky-500 hover:font-semibold">Thesis</a>
+                       class="flex items-center w-full p-2 text-white transition duration-75 pl-11 group {{ request()->is('inventory/thesis') ? 'font-semibold bg-sky-500' : 'hover:font-semibold hover:bg-sky-500' }}">Thesis</a>
                 </li>
             </ul>
             <button type="button"
@@ -74,12 +74,12 @@
             <ul id="reports" class="hidden">
                 <li>
                     <a href="#"
-                       class="flex items-center w-full p-2 text-white transition duration-75 pl-11 group hover:bg-sky-500 hover:font-semibold">Utilization
+                       class="flex items-center w-full p-2 text-white transition duration-75 pl-11 group {{ request()->is() ? 'font-semibold bg-sky-500' : 'hover:font-semibold hover:bg-sky-500' }}">Utilization
                         Report</a>
                 </li>
                 <li>
                     <a href="#"
-                       class="flex items-center w-full p-2 text-white transition duration-75 pl-11 group hover:bg-sky-500 hover:font-semibold">Patron
+                       class="flex items-center w-full p-2 text-white transition duration-75 pl-11 group {{ request()->is() ? 'font-semibold bg-sky-500' : 'hover:font-semibold hover:bg-sky-500' }}">Patron
                         Report</a>
                 </li>
             </ul>
@@ -92,12 +92,12 @@
             <ul id="staff-roles" class="hidden">
                 <li>
                     <a href="#"
-                       class="flex items-center w-full p-2 text-white transition duration-75 pl-11 group hover:bg-sky-500 hover:font-semibold">Staff
+                       class="flex items-center w-full p-2 text-white transition duration-75 pl-11 group {{ request()->is() ? 'font-semibold bg-sky-500' : 'hover:font-semibold hover:bg-sky-500' }}">Staff
                         Management</a>
                 </li>
                 <li>
                     <a href="#"
-                       class="flex items-center w-full p-2 text-white transition duration-75 pl-11 group hover:bg-sky-500 hover:font-semibold">Role
+                       class="flex items-center w-full p-2 text-white transition duration-75 pl-11 group {{ request()->is() ? 'font-semibold bg-sky-500' : 'hover:font-semibold hover:bg-sky-500' }}">Role
                         Management</a>
                 </li>
             </ul>
@@ -113,7 +113,7 @@
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     Log out
             </button>
-            <div class="p-3 bg-sky-900">v1.0.0</div>
+            <div class="p-3 bg-sky-900">{{config('version.APP_VER')}}</div>
         </div>
     </nav>
 </aside>

@@ -17,5 +17,6 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^6.7.1"
-    }
+    },
+    "type": "module"
 }

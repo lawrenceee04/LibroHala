@@ -1,9 +1,7 @@
 @extends('layouts.base')
 
-@section('navbar')
-    <x-navigation></x-navigation>
-@endsection
 @section('body')
+    <x-navigation></x-navigation>
     <div class="lg:ml-64">
         <div class="mt-14">
             <div class="py-10 px-10">
