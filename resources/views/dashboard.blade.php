@@ -62,16 +62,16 @@
                                         </div>
                                         <div class="mb-2 text-lg">Issued Books</div>
                                     </div>
-                                    <div class="flex flex-col w-full md:items-start">
-                                        <div class="flex flex-row items-end gap-3">
-                                            <div class="mb-2 text-6xl font-extrabold text-center">30</div>
-                                            <div class="flex flex-row justify-center items-center gap-2">
-                                                <i class="fa-solid fa-caret-up text-xl" style="color: #4ade80"></i>
-                                                <div class="text-xl text-green-400">0.66%</div>
-                                            </div>
-                                        </div>
-                                        <div class="mb-2 text-lg">Returned Books</div>
-                                    </div>
+{{--                                    <div class="flex flex-col w-full md:items-start">--}}
+{{--                                        <div class="flex flex-row items-end gap-3">--}}
+{{--                                            <div class="mb-2 text-6xl font-extrabold text-center">30</div>--}}
+{{--                                            <div class="flex flex-row justify-center items-center gap-2">--}}
+{{--                                                <i class="fa-solid fa-caret-up text-xl" style="color: #4ade80"></i>--}}
+{{--                                                <div class="text-xl text-green-400">0.66%</div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="mb-2 text-lg">Returned Books</div>--}}
+{{--                                    </div>--}}
                                 </div>
                             </div>
                         </div>
