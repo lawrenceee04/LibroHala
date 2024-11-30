@@ -35,7 +35,7 @@
                 </div>
 
                 <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-600">
-                    <thead class="bg-gray-100 dark:bg-gray-700">
+                    <thead class="bg-gray-200 dark:bg-gray-700">
                     <tr>
                         <th scope="col" class="p-4">
                             <div class="flex items-center">
@@ -45,63 +45,63 @@
                             </div>
                         </th>
                         <th scope="col"
-                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Accession Number
                         </th>
                         <th scope="col"
-                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Title
                         </th>
                         <th scope="col"
-                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Edition
                         </th>
                         <th scope="col"
-                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Author
                         </th>
                         <th scope="col"
-                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Publisher
                         </th>
                         <th scope="col"
-                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             ISBN
                         </th>
                         <th scope="col"
-                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Class
                         </th>
                         <th scope="col"
-                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Topic Area
                         </th>
                         <th scope="col"
-                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Cutter Number
                         </th>
                         <th scope="col"
-                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Publication Year
                         </th>
                         <th scope="col"
-                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Copies
                         </th>
                         <th scope="col"
-                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Status
                         </th>
                         <th scope="col"
-                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Genre
                         </th>
                         <th scope="col"
-                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Description
                         </th>
                         <th scope="col"
-                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Edit
                     </tr>
                     </thead>
@@ -144,8 +144,8 @@
 
 
                                 <!-- Modal toggle -->
-                                <button type="button" id="updateProductButton" data-modal-target="updateBook"
-                                        data-modal-toggle="updateBook" data-drawer-target="drawer-update-product-default"
+                                <button type="button" id="updateProductButton" data-modal-target="updateBook{{$book->id}}"
+                                        data-modal-toggle="updateBook{{$book->id}}" data-drawer-target="drawer-update-product-default"
                                         data-drawer-show="drawer-update-product-default"
                                         aria-controls="drawer-update-product-default" data-drawer-placement="right"
                                         class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-sky-500 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
@@ -162,7 +162,7 @@
                                 </button>
 
                                 <!-- Main modal -->
-                                <div id="updateBook" tabindex="-1" aria-hidden="true"
+                                <div id="updateBook{{$book->id}}" tabindex="-1" aria-hidden="true"
                                      class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                                     <div class="relative p-4 w-full max-w-xl max-h-full">
                                         <!-- Modal content -->
@@ -175,7 +175,7 @@
                                                 </h3>
                                                 <button type="button"
                                                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                                        data-modal-toggle="updateBook">
+                                                        data-modal-toggle="updateBook{{$book->id}}">
                                                     <svg class="w-3 h-3" aria-hidden="true"
                                                          xmlns="http://www.w3.org/2000/svg" fill="none"
                                                          viewBox="0 0 14 14">
@@ -187,92 +187,108 @@
                                                 </button>
                                             </div>
                                             <!-- Modal body -->
-                                            <form class="w-full p-4 md:p-5">
+                                            <form method="POST" action="/books/{{$book->id}}" class="w-full p-4 md:p-5">
+                                                @csrf
+                                                @method('PATCH')
+
                                                 <div class="grid gap-4 mb-4 grid-cols-4">
                                                     <div class="col-span-4">
-                                                        <label for="name"
+                                                        <label for="accession_number"
+                                                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Accession Number</label>
+                                                        <input type="text" name="accession_number" id="accession_number"
+                                                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                               value="{{$book->accession_number}}">
+                                                    </div>
+                                                    <div class="col-span-4">
+                                                        <label for="title"
                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-                                                        <input type="text" name="name" id="title"
+                                                        <input type="text" name="title" id="title"
                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                               placeholder="How to Think Like a Programmer">
+                                                               value="{{$book->title}}">
                                                     </div>
                                                     <div class="col-span-4">
-                                                        <label for="price"
+                                                        <label for="edition"
                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Edition</label>
-                                                        <input type="text" name="price" id="isbn"
+                                                        <input type="text" name="edition" id="edition"
                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                               placeholder="2nd Ed.">
+                                                               value="{{$book->edition}}">
                                                     </div>
                                                     <div class="col-span-4">
-                                                        <label for="price"
+                                                        <label for="author"
                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Author</label>
-                                                        <input type="text" name="price" id="author"
+                                                        <input type="text" name="author" id="author"
                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                               placeholder="Paul Vickers">
+                                                               value="{{$book->author}}">
                                                     </div>
                                                     <div class="col-span-4">
-                                                        <label for="price"
+                                                        <label for="publisher"
+                                                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Publisher</label>
+                                                        <input type="text" name="publisher" id="publisher"
+                                                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                               value="{{$book->publisher}}">
+                                                    </div>
+                                                    <div class="col-span-4">
+                                                        <label for="isbn"
                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ISBN</label>
-                                                        <input type="text" name="price" id="isbn"
+                                                        <input type="text" name="isbn" id="isbn"
                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                               placeholder="978-1-84480-900-4">
+                                                               value="{{$book->isbn}}">
                                                     </div>
                                                     <div class="col-span-1">
-                                                        <label for="price"
+                                                        <label for="class"
                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Class</label>
-                                                        <input type="text" name="price" id="class-number"
+                                                        <input type="text" name="class" id="class"
                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                               placeholder="QA">
+                                                               value="{{$book->class}}">
                                                     </div>
                                                     <div class="col-span-1">
-                                                        <label for="price"
+                                                        <label for="topic_area"
                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Topic
                                                             Area</label>
-                                                        <input type="text" name="price" id="topic-area"
+                                                        <input type="text" name="topic_area" id="topic_area"
                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                               placeholder="76.6">
+                                                               value="{{$book->topic_area}}">
                                                     </div>
                                                     <div class="col-span-1">
-                                                        <label for="price"
+                                                        <label for="cutter_number"
                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cutter
                                                             Number</label>
-                                                        <input type="text" name="price" id="cutter-number"
+                                                        <input type="text" name="cutter_number" id="cutter_number"
                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                               placeholder="V64">
+                                                               value="{{$book->cutter_number}}">
                                                     </div>
                                                     <div class="col-span-1">
-                                                        <label for="price"
+                                                        <label for="publication_year"
                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Publication
                                                             Year</label>
-                                                        <input type="text" name="price" id="publication-year"
+                                                        <input type="text" name="publication_year" id="publication_year"
                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                               placeholder="2008">
+                                                               value="{{$book->publication_year}}">
                                                     </div>
-                                                    <div class="col-span-4">
-                                                        <label for="price"
-                                                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Copies</label>
-                                                        <input type="text" name="price" id="copies"
+                                                    <div class="col-span-2">
+                                                        <label for="copies"
+                                                               class="block mb-2 text-sm font-medium te xt-gray-900 dark:text-white">Copies</label>
+                                                        <input type="text" name="copies" id="copies"
                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                               placeholder="C-1">
+                                                               value="{{$book->copies}}">
                                                     </div>
-                                                    <div class="col-span-4">
-                                                        <label for="price"
+                                                    <div class="col-span-2">
+                                                        <label for="genre"
                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Genre</label>
-                                                        <input type="text" name="price" id="genre"
+                                                        <input type="text" name="genre" id="genre"
                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                               placeholder="Computer Science">
+                                                               value="{{$book->genre}}">
                                                     </div>
                                                     <div class="col-span-4">
-                                                        <label for="price"
+                                                        <label for="description"
                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                                                        <textarea id="description" rows="4"
-                                                                  class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                                  placeholder="Write product description here"></textarea>
+                                                        <textarea type="text" name="description" id="description" rows="4"
+                                                                  class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{{$book->description}}</textarea>
                                                     </div>
                                                 </div>
                                                 <button type="submit"
                                                         class="text-white items-center w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                                    Save
+                                                    Update
                                                 </button>
                                             </form>
                                         </div>
