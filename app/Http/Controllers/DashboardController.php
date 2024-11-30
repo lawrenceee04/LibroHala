@@ -17,12 +17,18 @@ class DashboardController extends Controller
     public function __invoke(WeeklyVisitsChart $chart)
     {
         return view('dashboard', [
+            // 4 Cards
             'patrons' => Patron::all()->count(),
             'books' => Book::all()->count(),
             'thesis' => 0,
             'issued' => Issued::all()->count(),
+
+            // Visits this week
             'chart' => $chart->build(),
-            'visits' => Visit::today()
+
+            // Today
+            'visits' => Visit::today(),
+            'issued_books' => 0,
         ]);
     }
 }
