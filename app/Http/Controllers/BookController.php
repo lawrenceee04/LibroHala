@@ -15,7 +15,7 @@ class BookController extends Controller
     {
         $books = DB::table('books')->paginate(20);
 
-        return view('inventory.books', ['books' => $books]);
+        return view('inventory.books.index', ['books' => $books]);
     }
 
     /**
@@ -39,7 +39,8 @@ class BookController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $book = Book::find($id);
+        return view('inventory.books.show', ['book' => $book]);
     }
 
     /**
@@ -53,9 +54,31 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(string $id)
     {
-        //
+        // validate
+        // authorize
+        // update
+        $book = Book::findOrFail($id);
+
+        $book->update([
+            'accession_number' => request('accession_number'),
+            'title' => request('title'),
+            'edition' => request('edition'),
+            'author' => request('author'),
+            'publisher' => request('publisher'),
+            'isbn' => request('isbn'),
+            'class' => request('class'),
+            'topic_area' => request('topic_area'),
+            'cutter_number' => request('cutter_number'),
+            'publication_year' => request('publication_year'),
+            'copies' => request('copies'),
+            'genre' => request('genre'),
+            'description' => request('description')
+        ]);
+        // persist
+        // redirect to the inventory
+        return redirect('/inventory/books');
     }
 
     /**
@@ -63,6 +86,8 @@ class BookController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $book = Book::find($id);
+        $book->delete();
+        return redirect('/inventory/books');
     }
 }
