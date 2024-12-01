@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
-|
+|ob
 */
 
 Route::get('/', function () {
@@ -31,42 +31,9 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(BookController::class)->group(function () {
     Route::get('/inventory/books', 'index');
+    Route::get('/inventory/book/{id}', 'show');
+    Route::patch('/inventory/books/{id}', 'update');
+    Route::delete('/inventory/books/{id}', 'destroy');
 });
 
-//// Add new book
-//Route::post('/cataloguing/books/create', function () {
-////    return view('books.create');
-//});
-
-// Update
-Route::patch('/books/{id}', function ($id) {
-    // validate
-    // authorize
-    // update
-    $book = Book::findOrFail($id);
-
-    $book->update([
-        'accession_number' => request('accession_number'),
-        'title' => request('title'),
-        'edition' => request('edition'),
-        'author' => request('author'),
-        'publisher' => request('publisher'),
-        'isbn' => request('isbn'),
-        'class' => request('class'),
-        'topic_area' => request('topic_area'),
-        'cutter_number' => request('cutter_number'),
-        'publication_year' => request('publication_year'),
-        'copies' => request('copies'),
-        'genre' => request('genre'),
-        'description' => request('description')
-    ]);
-    // persist
-    // redirect to the inventory
-//    redirect()->route();
-});
-
-//Route::delete('/books/{id}', function ($id) {
-////
-//});
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
