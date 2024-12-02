@@ -4,16 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books = DB::table('books')->paginate(20);
+        $sortBy = $request->input('sort_by', 'updated_at');
+        $sortOrder = $request->input('sort_order', 'asc');
+
+        $books = Book::orderBy($sortBy, $sortOrder)->paginate(20);
 
         return view('inventory.books.index', ['books' => $books]);
     }
@@ -89,5 +91,10 @@ class BookController extends Controller
         $book = Book::find($id);
         $book->delete();
         return redirect('/inventory/books');
+    }
+
+    public function sort(Request $request)
+    {
+        return $this->index($request);
     }
 }
