@@ -31,9 +31,13 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(BookController::class)->group(function () {
     Route::get('/inventory/books', 'index');
-    Route::get('/inventory/book/{id}', 'show');
-    Route::patch('/inventory/books/{id}', 'update');
+    Route::post('/inventory/books/{sort_by?}/{sort_order?}', 'sort');
+    Route::patch('/inventory/book/{id}', 'update');
     Route::delete('/inventory/books/{id}', 'destroy');
+});
+
+Route::fallback(function () {
+    return view('welcome');
 });
 
 require __DIR__ . '/auth.php';
