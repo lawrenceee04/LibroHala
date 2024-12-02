@@ -44,57 +44,70 @@
                                 <label for="checkbox-all" class="sr-only">checkbox</label>
                             </div>
                         </th>
-                        <th scope="col"
+                        <th scope="col" onclick="TableSort('accession_number')"
                             class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Accession Number
+                            <i class="fa-solid fa-sort"></i>
                         </th>
-                        <th scope="col"
+                        <th scope="col" onclick="TableSort('title')"
                             class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Title
+                            <i class="fa-solid fa-sort"></i>
                         </th>
-                        <th scope="col"
+                        <th scope="col" onclick="TableSort('edition')"
                             class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Edition
+                            <i class="fa-solid fa-sort"></i>
                         </th>
-                        <th scope="col"
+                        <th scope="col" onclick="TableSort('author')"
                             class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Author
+                            <i class="fa-solid fa-sort"></i>
                         </th>
-                        <th scope="col"
+                        <th scope="col" onclick="TableSort('publisher')"
                             class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Publisher
+                            <i class="fa-solid fa-sort"></i>
                         </th>
-                        <th scope="col"
+                        <th scope="col" onclick="TableSort('isbn')"
                             class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             ISBN
+                            <i class="fa-solid fa-sort"></i>
                         </th>
-                        <th scope="col"
+                        <th scope="col" onclick="TableSort('class')"
                             class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Class
+                            <i class="fa-solid fa-sort"></i>
                         </th>
-                        <th scope="col"
+                        <th scope="col" onclick="TableSort('topic_area')"
                             class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Topic Area
+                            <i class="fa-solid fa-sort"></i>
                         </th>
-                        <th scope="col"
+                        <th scope="col" onclick="TableSort('cutter_number')"
                             class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Cutter Number
+                            <i class="fa-solid fa-sort"></i>
                         </th>
-                        <th scope="col"
+                        <th scope="col" onclick="TableSort('publication_year')"
                             class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Publication Year
+                            <i class="fa-solid fa-sort"></i>
                         </th>
-                        <th scope="col"
+                        <th scope="col" onclick="TableSort('copies')"
                             class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Copies
+                            <i class="fa-solid fa-sort"></i>
                         </th>
-                        <th scope="col"
+                        <th scope="col" onclick="TableSort('status')"
                             class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Status
+                            <i class="fa-solid fa-sort"></i>
                         </th>
-                        <th scope="col"
+                        <th scope="col" onclick="TableSort('genre')"
                             class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Genre
+                            <i class="fa-solid fa-sort"></i>
                         </th>
                         <th scope="col"
                             class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
@@ -104,6 +117,28 @@
                             class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
                             Edit
                     </tr>
+
+                    <script>
+                        function TableSort(column) {
+                            document.getElementById('sort_by').value = column;
+
+                            if (document.getElementById('sort_order').value == 'asc') {
+                                document.getElementById('sort_order').value = 'desc';
+                            }
+                            else {
+                                document.getElementById('sort_order').value = 'asc';
+                            }
+                            document.getElementById('sort').submit();
+                        }
+
+                    </script>
+
+                    <form action="{{ url()->current() }}" method="POST" class="hidden" id="sort">
+                        @csrf
+                        <input type="hidden" name="sort_by" id="sort_by">
+                        <input type="hidden" name="sort_order" id="sort_order" value="desc">
+                    </form>
+
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
 
@@ -155,7 +190,10 @@
 
 
                             <!-- Modal toggle -->
-                            <a href="/inventory/book/{{$book->id}}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-sky-500 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                            <button type="button" id="updateProductButton" data-modal-target="updateBook{{$book->id}}"
+                                data-modal-toggle="updateBook{{$book->id}}"
+                                aria-controls="drawer-update-product-default" data-drawer-placement="right"
+                                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-sky-500 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                                 <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -166,7 +204,7 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 Update
-                            </a>
+                            </button>
 
                             <!-- Main modal -->
                             <div id="updateBook{{$book->id}}" tabindex="-1" aria-hidden="true"
@@ -304,9 +342,8 @@
                             </div>
 
                             <button type="button" id="deleteProductButton" data-modal-target="deleteBook"
-                                data-modal-toggle="deleteBook" data-drawer-target="drawer-delete-product-default"
-                                data-drawer-show="drawer-delete-product-default"
-                                aria-controls="drawer-delete-product-default" data-drawer-placement="right"
+                                data-modal-toggle="deleteBook" aria-controls="drawer-delete-product-default"
+                                data-drawer-placement="right"
                                 class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
                                 <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -342,11 +379,13 @@
                                             </svg>
                                             <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
                                                 Are you sure you want to delete this book?</h3>
-                                            <form method="POST" action="/inventory/books/{{$book->id}}" id="deleteBook{{$book->id}}">
+                                            <form method="POST" action="/inventory/books/{{$book->id}}"
+                                                id="deleteBook{{$book->id}}">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
-                                            <button form="deleteBook{{$book->id}}" data-modal-hide="deleteBook" type="submit"
+                                            <button form="deleteBook{{$book->id}}" data-modal-hide="deleteBook"
+                                                type="submit"
                                                 class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                                                 Yes, delete this book
                                             </button>
