@@ -12,12 +12,12 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
-        $sortBy = $request->input('sort_by', 'updated_at');
+        $sortBy = $request->input('sort_by', 'accession_number');
         $sortOrder = $request->input('sort_order', 'asc');
 
-        $books = Book::orderBy($sortBy, $sortOrder)->paginate(20);
+        $books = Book::orderBy($sortBy, $sortOrder)->paginate(10);
 
-        return view('inventory.books.index', ['books' => $books]);
+        return view('inventory.books.index', compact('books', 'sortBy', 'sortOrder'));
     }
 
     /**

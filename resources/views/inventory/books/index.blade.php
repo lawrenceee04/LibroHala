@@ -124,9 +124,11 @@
 
                             if (document.getElementById('sort_order').value == 'asc') {
                                 document.getElementById('sort_order').value = 'desc';
+                                console.log("descending");
                             }
                             else {
                                 document.getElementById('sort_order').value = 'asc';
+                                console.log("ascending");
                             }
                             document.getElementById('sort').submit();
                         }
@@ -135,8 +137,10 @@
 
                     <form action="{{ url()->current() }}" method="POST" class="hidden" id="sort">
                         @csrf
-                        <input type="hidden" name="sort_by" id="sort_by">
-                        <input type="hidden" name="sort_order" id="sort_order" value="desc">
+                        <input type="hidden" name="sort_by" id="sort_by"
+                            value="{{ request('sort_by', 'accession_number') }}">
+                        <input type="hidden" name="sort_order" id="sort_order"
+                            value="{{ request('sort_order', 'asc') }}">
                     </form>
 
                 </thead>
@@ -405,7 +409,7 @@
             </table>
 
             <div>
-                {{ $books->links() }}
+                {{ $books->appends(['sort_by' => $sortBy, 'sort_order' => $sortOrder])->links() }}
             </div>
         </div>
     </div>
