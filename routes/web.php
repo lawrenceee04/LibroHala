@@ -31,7 +31,8 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(BookController::class)->group(function () {
     Route::get('/inventory/books', 'index');
-    Route::post('/inventory/books/{sort_by?}/{sort_order?}', 'sort');
+    Route::get('/inventory/books/search', 'search')->name('books.search');
+    Route::post('/inventory/books', 'sort');
     Route::patch('/inventory/book/{id}', 'update');
     Route::delete('/inventory/books/{id}', 'destroy');
 });
