@@ -45,6 +45,25 @@ class BookController extends Controller
         return view('inventory.books.show', ['book' => $book]);
     }
 
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+        $sortBy = $request->input('sort_by', 'title'); // Default sort column
+        $sortOrder = $request->input('sort_order', 'asc'); // Default sort order
+
+        $search_result = Book::search($keyword, function ($meilisearch, $query, $options) use ($sortBy, $sortOrder) {
+            $options['sort'] = ["{$sortBy}:{$sortOrder}"];
+            return $meilisearch->search($query, $options);
+        })->paginate(10);
+
+        return view('inventory.books.index', [
+            'books' => $search_result,
+            'sortBy' => $sortBy,
+            'sortOrder' => $sortOrder,
+            'keyword' => $keyword
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

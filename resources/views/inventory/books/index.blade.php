@@ -9,7 +9,7 @@
 
 
             <div class="grid grid-cols-2 mb-3 justify-stretch">
-                <form class="container self-start">
+                <div class="container self-start">
                     <label for="default-search"
                         class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                     <div class="relative">
@@ -20,13 +20,13 @@
                                     stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                             </svg>
                         </div>
-                        <input type="search" id="default-search"
+                        <input name="keyword" type="text" id="keyword" form="sort"
                             class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Search Books" required />
-                        <button type="submit"
+                        <button type="submit" form="sort"
                             class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                     </div>
-                </form>
+                </div>
                 <div class="flex items-center justify-end">
                     <button type="button"
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add
@@ -135,12 +135,12 @@
 
                     </script>
 
-                    <form action="{{ url()->current() }}" method="POST" class="hidden" id="sort">
+                    <form action="{{ route('books.search') }}" method="GET" class="hidden" id="sort">
                         @csrf
-                        <input type="hidden" name="sort_by" id="sort_by"
-                            value="{{ request('sort_by', 'accession_number') }}">
+                        <input type="hidden" name="sort_by" id="sort_by" value="{{ request('sort_by', 'title') }}">
                         <input type="hidden" name="sort_order" id="sort_order"
                             value="{{ request('sort_order', 'asc') }}">
+                        {{-- <input type="hidden" name="keyword" id="keyword" value="{{ request('keyword') }}"> --}}
                     </form>
 
                 </thead>
@@ -161,7 +161,8 @@
                             </div>
                         </td>
                         <td class="p-4 text-sm font-normal text-gray-500 overflow-hidden max-w-md dark:text-gray-400">
-                            <div class="text-base font-semibold text-gray-900 dark:text-white"> {{$book->title}} </div>
+                            <div class="text-base font-semibold text-gray-900 dark:text-white"> {{$book->title}}
+                            </div>
                         </td>
                         <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{$book->edition}} </td>
@@ -409,7 +410,7 @@
             </table>
 
             <div>
-                {{ $books->appends(['sort_by' => $sortBy, 'sort_order' => $sortOrder])->links() }}
+                {{ $books->appends(['sort_by' => $sortBy, 'sort_order' => $sortOrder,])->links() }}
             </div>
         </div>
     </div>
