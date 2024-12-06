@@ -12,8 +12,8 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
-        $sortBy = $request->input('sort_by', 'accession_number');
-        $sortOrder = $request->input('sort_order', 'asc');
+        $sortBy = $request->input('sort_by', 'updated_at');
+        $sortOrder = $request->input('sort_order', 'desc');
 
         $books = Book::orderBy($sortBy, $sortOrder)->paginate(10);
 
@@ -48,13 +48,15 @@ class BookController extends Controller
     public function search(Request $request)
     {
         $keyword = $request->input('keyword');
-        $sortBy = $request->input('sort_by', 'title'); // Default sort column
-        $sortOrder = $request->input('sort_order', 'asc'); // Default sort order
+        $sortBy = $request->input('sort_by');
+        $sortOrder = $request->input('sort_order', 'asc');
 
         $search_result = Book::search($keyword, function ($meilisearch, $query, $options) use ($sortBy, $sortOrder) {
-            $options['sort'] = ["{$sortBy}:{$sortOrder}"];
+            if ($sortBy) {
+                $options['sort'] = ["{$sortBy}:{$sortOrder}"];
+            }
             return $meilisearch->search($query, $options);
-        })->paginate(10);
+        })->paginate(20);
 
         return view('inventory.books.index', [
             'books' => $search_result,
@@ -63,7 +65,6 @@ class BookController extends Controller
             'keyword' => $keyword
         ]);
     }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -99,6 +100,7 @@ class BookController extends Controller
         ]);
         // persist
         // redirect to the inventory
+
         return redirect('/inventory/books');
     }
 
