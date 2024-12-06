@@ -26,20 +26,20 @@ class Book extends Model
         // return $array;
 
         return [
-            'accession_number' => $this->accession_number,
-            'title' => $this->title,
-            // 'edition'=> $this->edition,
-            'author' => $this->author,
-            'publisher' => $this->publisher,
-            'isbn' => $this->isbn,
-            // 'class' => $this->class,
-            'topic_area' => $this->topic_area,
-            // 'cutter_number' => $this->cutter_number,
-            'publication_year' => $this->publication_year,
-            // 'copies' => $this->copies,
-            // 'status' => $this->status,
-            'genre' => $this->genre,
-            'description' => $this->description
+            'Accession Number' => $this->accession_number,
+            'Title' => $this->title,
+             'Editon'=> $this->edition,
+            'Author' => $this->author,
+            'Publisher' => $this->publisher,
+            'ISBN' => $this->isbn,
+            'Class' => $this->class,
+            'Topic Area' => $this->topic_area,
+            'Cutter Number' => $this->cutter_number,
+            'Publication Year' => $this->publication_year,
+            'Copies' => $this->copies,
+            'Status' => $this->status,
+            'Genre' => $this->genre,
+            'Description' => $this->description
         ];
     }
 
