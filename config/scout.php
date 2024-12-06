@@ -138,17 +138,23 @@ return [
         'index-settings' => [
             Book::class => [
                 'filterableAttributes' => [
-                    'author',
-                    'publisher',
-                    'topic_area',
-                    'publication_year',
-                    'genre',
                 ],
                 'sortableAttributes' => [
                     'id',
-                    'accession_number',
-                    'title',
-                    'isbn',
+                    'Accession Number',
+                    'Title',
+                    'Edition',
+                    'Author',
+                    'Publisher',
+                    'ISBN',
+                    'Class',
+                    'Topic Area',
+                    'Cutter Number',
+                    'Publication Year',
+                    'Copies',
+                    'Status',
+                    'Genre',
+                    'Description',
                 ]
             ],
         ],
