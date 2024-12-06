@@ -8,7 +8,7 @@
             <div class="mb-4 text-xl font-bold">All Books</div>
 
 
-            <div class="grid grid-cols-2 mb-3 justify-stretch">
+            <div class="grid grid-cols-3 mb-3 gap-4 justify-stretch items-center">
                 <div class="container self-start">
                     <label for="default-search"
                         class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
@@ -20,13 +20,88 @@
                                     stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                             </svg>
                         </div>
+
+                        <form action="{{ route('books.search') }}" method="GET" class="hidden" id="sort">
+                            @csrf
+                            <input type="hidden" name="query" value="{{ request()->input('query') }}">
+                            <input type="hidden" name="sort_order" id="sort_order" value="asc">
+                        </form>
+
                         <input name="keyword" type="text" id="keyword" form="sort"
                             class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Search Books" required />
+                            placeholder="Search Books" value="{{ request()->input('keyword') }}" />
                         <button type="submit" form="sort"
                             class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                     </div>
                 </div>
+
+                <div class="container">
+                    <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+                        class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center"
+                        type="button">Sort<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
+                        </svg>
+                    </button>
+
+                    <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56">
+                        <ul class="text-sm text-gray-700 p-4" aria-labelledby="dropdownDefaultButton">
+                            <li>
+                                <div class="flex items-center p-2">
+                                    <input id="no_sort" type="radio" value="" name="sort_by" form="sort"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                        {{ request()->input('sort_by') == "" ? 'checked' : '' }}>
+                                    <label for="no_sort" class="ms-2 text-sm text-gray-900 dark:text-gray-300">No
+                                        sort</label>
+                                </div>
+                            </li>
+                            <x-sort-by sortBy="Accession Number">
+                                Accession Number
+                            </x-sort-by>
+                            <x-sort-by sortBy="Title">
+                                Title
+                            </x-sort-by>
+                            <x-sort-by sortBy="Edition">
+                                Edition
+                            </x-sort-by>
+                            <x-sort-by sortBy="Author">
+                                Author
+                            </x-sort-by>
+                            <x-sort-by sortBy="Publisher">
+                                Publisher
+                            </x-sort-by>
+                            <x-sort-by sortBy="ISBN">
+                                ISBN
+                            </x-sort-by>
+                            <x-sort-by sortBy="Class">
+                                Class
+                            </x-sort-by>
+                            <x-sort-by sortBy="Topic Area">
+                                Topic Area
+                            </x-sort-by>
+                            <x-sort-by sortBy="Cutter Number">
+                                Cutter Number
+                            </x-sort-by>
+                            <x-sort-by sortBy="Publication Year">
+                                Publication Year
+                            </x-sort-by>
+                            <x-sort-by sortBy="Copies">
+                                Copies
+                            </x-sort-by>
+                            <x-sort-by sortBy="Status">
+                                Status
+                            </x-sort-by>
+                            <x-sort-by sortBy="Genre">
+                                Genre
+                            </x-sort-by>
+                            <x-sort-by sortBy="Description">
+                                Description
+                            </x-sort-by>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="flex items-center justify-end">
                     <button type="button"
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add
@@ -44,104 +119,40 @@
                                 <label for="checkbox-all" class="sr-only">checkbox</label>
                             </div>
                         </th>
-                        <th scope="col" onclick="TableSort('accession_number')"
-                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
-                            Accession Number
-                            <i class="fa-solid fa-sort"></i>
-                        </th>
-                        <th scope="col" onclick="TableSort('title')"
-                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
-                            Title
-                            <i class="fa-solid fa-sort"></i>
-                        </th>
-                        <th scope="col" onclick="TableSort('edition')"
-                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
-                            Edition
-                            <i class="fa-solid fa-sort"></i>
-                        </th>
-                        <th scope="col" onclick="TableSort('author')"
-                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
-                            Author
-                            <i class="fa-solid fa-sort"></i>
-                        </th>
-                        <th scope="col" onclick="TableSort('publisher')"
-                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
-                            Publisher
-                            <i class="fa-solid fa-sort"></i>
-                        </th>
-                        <th scope="col" onclick="TableSort('isbn')"
-                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
-                            ISBN
-                            <i class="fa-solid fa-sort"></i>
-                        </th>
-                        <th scope="col" onclick="TableSort('class')"
-                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
+                        <x-book-table-column>Accession Number</x-book-table-column>
+                        <x-book-table-column>Title</x-book-table-column>
+                        <x-book-table-column>Edition</x-book-table-column>
+                        <x-book-table-column>Author</x-book-table-column>
+                        <x-book-table-column>Publisher</x-book-table-column>
+                        <x-book-table-column>ISBN</x-book-table-column>
+                        <x-book-table-column>
                             Class
-                            <i class="fa-solid fa-sort"></i>
-                        </th>
-                        <th scope="col" onclick="TableSort('topic_area')"
-                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
+                        </x-book-table-column>
+                        <x-book-table-column>
                             Topic Area
-                            <i class="fa-solid fa-sort"></i>
-                        </th>
-                        <th scope="col" onclick="TableSort('cutter_number')"
-                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
+                        </x-book-table-column>
+                        <x-book-table-column>
                             Cutter Number
-                            <i class="fa-solid fa-sort"></i>
-                        </th>
-                        <th scope="col" onclick="TableSort('publication_year')"
-                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
+                        </x-book-table-column>
+                        <x-book-table-column>
                             Publication Year
-                            <i class="fa-solid fa-sort"></i>
-                        </th>
-                        <th scope="col" onclick="TableSort('copies')"
-                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
+                        </x-book-table-column>
+                        <x-book-table-column>
                             Copies
-                            <i class="fa-solid fa-sort"></i>
-                        </th>
-                        <th scope="col" onclick="TableSort('status')"
-                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
+                        </x-book-table-column>
+                        <x-book-table-column>
                             Status
-                            <i class="fa-solid fa-sort"></i>
-                        </th>
-                        <th scope="col" onclick="TableSort('genre')"
-                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
+                        </x-book-table-column>
+                        <x-book-table-column>
                             Genre
-                            <i class="fa-solid fa-sort"></i>
-                        </th>
-                        <th scope="col"
-                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
+                        </x-book-table-column>
+                        <x-book-table-column>
                             Description
-                        </th>
-                        <th scope="col"
-                            class="p-4 text-xs font-medium text-left text-gray-800 uppercase dark:text-gray-400">
+                        </x-book-table-column>
+                        <x-book-table-column>
                             Edit
+                        </x-book-table-column>
                     </tr>
-
-                    <script>
-                        function TableSort(column) {
-                            document.getElementById('sort_by').value = column;
-
-                            if (document.getElementById('sort_order').value == 'asc') {
-                                document.getElementById('sort_order').value = 'desc';
-                                console.log("descending");
-                            }
-                            else {
-                                document.getElementById('sort_order').value = 'asc';
-                                console.log("ascending");
-                            }
-                            document.getElementById('sort').submit();
-                        }
-
-                    </script>
-
-                    <form action="{{ route('books.search') }}" method="GET" class="hidden" id="sort">
-                        @csrf
-                        <input type="hidden" name="sort_by" id="sort_by" value="{{ request('sort_by', 'title') }}">
-                        <input type="hidden" name="sort_order" id="sort_order"
-                            value="{{ request('sort_order', 'asc') }}">
-                        {{-- <input type="hidden" name="keyword" id="keyword" value="{{ request('keyword') }}"> --}}
-                    </form>
 
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
