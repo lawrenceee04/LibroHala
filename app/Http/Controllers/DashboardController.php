@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Charts\WeeklyVisitsChart;
 use App\Models\Book;
 use App\Models\Issued;
+use App\Models\Journal;
 use App\Models\Patron;
 use App\Models\Visit;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class DashboardController extends Controller
             // 4 Cards
             'patrons' => Patron::all()->count(),
             'books' => Book::all()->count(),
-            'thesis' => 0,
+            'thesis' => Journal::all()->count(),
             'issued' => Issued::all()->count(),
 
             // Visits this week
@@ -28,7 +29,11 @@ class DashboardController extends Controller
 
             // Today
             'visits' => Visit::today(),
+            'percentComparedYesterday' => Visit::percentComparedYesterday(),
+
             'issued_books' => 0,
+
+
         ]);
     }
 }
