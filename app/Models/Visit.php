@@ -31,7 +31,16 @@ class Visit extends Model
             $date = today()->subDays($i);
             $counts[] = self::whereDate('check_in_date', $date)->count();
         }
-        // return an array of count(visits) from the last 7 days
         return $counts;
+    }
+
+    public static function percentComparedYesterday()
+    {
+        $yesterdayVisitCount = self::whereDate('check_in_date', today()->subDay())->count();
+        $todayVisitCount = self::whereDate('check_in_date', today())->count();
+
+        $percentage = ($todayVisitCount - $yesterdayVisitCount) / $yesterdayVisitCount * 100;
+
+        return number_format($percentage, 0);
     }
 }
