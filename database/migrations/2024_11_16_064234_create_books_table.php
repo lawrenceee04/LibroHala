@@ -23,10 +23,10 @@ return new class extends Migration
             $table->double('topic_area');
             $table->string('cutter_number');
             $table->string('publication_year');
-            $table->string('copies');
+            $table->string('copies')->nullable();
             $table->string('status');
             $table->string('genre');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
