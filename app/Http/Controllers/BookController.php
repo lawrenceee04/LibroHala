@@ -23,9 +23,41 @@ class BookController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $book = $request->validateWithBag("addBook", [
+            'accession_number' => ['required', 'string'],
+            'title' => ['required', 'string', 'max:255'],
+            'edition' => ['required', 'string'],
+            'author' => ['required', 'string', 'max:255'],
+            'publisher' => ['required', 'string', 'max:255'],
+            'isbn' => ['required', 'numeric', 'digits_between:10, 13'],
+            'class' => ['required', 'string', 'alpha:ascii', 'size:2'],
+            'topic_area' => ['required', 'numeric'],
+            'cutter_number' => ['required', 'string', 'max:10'],
+            'publication_year' => ['required', 'numeric'],
+            'copies' => ['nullable', 'string'],
+            'genre' => ['required', 'string'],
+            'description' => ['nullable', 'string'],
+        ]);
+
+        Book::create([
+            'accession_number' => $book['accession_number'],
+            'title' => $book['title'],
+            'edition' => $book['edition'],
+            'author' => $book['author'],
+            'publisher' => $book['publisher'],
+            'isbn' => $book['isbn'],
+            'class' => $book['class'],
+            'topic_area' => $book['topic_area'],
+            'cutter_number' => $book['cutter_number'],
+            'publication_year' => $book['publication_year'],
+            'copies' => $book['copies'],
+            'genre' => $book['genre'],
+            'description' => $book['description'],
+        ]);
+
+        return redirect(route('books.index'));
     }
 
     /**
