@@ -12,6 +12,7 @@ class Book extends Model
 {
     protected $table = 'books';
 
+
     use HasFactory, SoftDeletes, Searchable;
 
     public function searchableAs()
@@ -28,7 +29,7 @@ class Book extends Model
         return [
             'Accession Number' => $this->accession_number,
             'Title' => $this->title,
-             'Editon'=> $this->edition,
+            'Editon' => $this->edition,
             'Author' => $this->author,
             'Publisher' => $this->publisher,
             'ISBN' => $this->isbn,
@@ -39,9 +40,13 @@ class Book extends Model
             'Copies' => $this->copies,
             'Status' => $this->status,
             'Genre' => $this->genre,
-            'Description' => $this->description
+            'Description' => $this->description,
         ];
     }
+
+    protected $attributes = [
+        'status' => 'Available',
+    ];
 
     protected $fillable = [
         'accession_number',
@@ -55,7 +60,6 @@ class Book extends Model
         'cutter_number',
         'publication_year',
         'copies',
-        'status',
         'genre',
         'description'
     ];
