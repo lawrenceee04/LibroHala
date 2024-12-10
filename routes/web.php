@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Support\Facades\Route;
 
@@ -31,16 +33,25 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(BookController::class)->group(function () {
     Route::get('/inventory/books', 'index')->name('books.index');
-    Route::post('/inventory/book/create', 'create')->name('book.create');
+    Route::get('/inventory/book/create', 'create')->name('book.create');
+    Route::post('/inventory/book/store', 'store')->name('book.store');
     Route::get('/inventory/books/search', 'search')->name('books.search');
-    Route::post('/inventory/books', 'sort');
-    Route::patch('/inventory/book/{id}', 'update');
+    Route::patch('/inventory/book/{id}', 'update')->name('book.update');
     Route::delete('/inventory/books/{id}', 'destroy');
 });
 
 Route::get('/cataloguing/book', function () {
     return view('cataloguing.book');
 })->name('cataloguing.book');
+
+Route::controller(AuthorController::class)->group(function () {
+    Route::get('/cataloguing/authors', 'index')->name('authors.index');
+    Route::get('/cataloguing/author', 'create')->name('author.create');
+    Route::post('/cataloguing/author', 'store')->name('author.store');
+    // Search function
+    Route::patch('/cataloguing/author/{id}', 'update')->name('author.update');
+    Route::delete('/cataloguing/author/{id}', 'destroy');
+});
 
 Route::fallback(function () {
     return view('welcome');

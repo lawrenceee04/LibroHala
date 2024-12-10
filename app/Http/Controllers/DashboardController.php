@@ -21,15 +21,15 @@ class DashboardController extends Controller
             // 4 Cards
             'patrons' => Patron::all()->count(),
             'books' => Book::all()->count(),
-            'thesis' => Journal::all()->count(),
-            'issued' => Issued::all()->count(),
+            'thesis' => 0,
+            'issued' => 0,
 
             // Visits this week
             'chart' => $chart->build(),
 
             // Today
-            'visits' => Visit::today(),
-            'percentComparedYesterday' => Visit::percentComparedYesterday(),
+            'visits' => 0,
+            'percentComparedYesterday' => 0,
 
             'issued_books' => 0,
 

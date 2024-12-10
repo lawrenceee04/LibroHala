@@ -25,7 +25,7 @@
 
             <input name="keyword" type="text" id="keyword" form="sort"
                 class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Search Books" value="{{ request()->input('keyword') }}" />
+                placeholder="Search books" value="{{ request()->input('keyword') }}" />
             <button type="submit" form="sort"
                 class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
         </div>
@@ -98,20 +98,13 @@
     <div class="flex items-center justify-end">
         <a href="{{ route('cataloguing.book') }}"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add
-            new book</a>
+            book</a>
     </div>
 </div>
 
 <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-600">
     <thead class="bg-gray-200 dark:bg-gray-700">
         <tr>
-            <th scope="col" class="p-4">
-                <div class="flex items-center">
-                    <input id="checkbox-all" aria-describedby="checkbox-1" type="checkbox"
-                        class="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:focus:ring-primary-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="checkbox-all" class="sr-only">checkbox</label>
-                </div>
-            </th>
             <x-book-table-column>
                 Accession Number
             </x-book-table-column>
@@ -164,13 +157,6 @@
 
         @foreach($books as $book)
         <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
-            <td class="w-4 p-4">
-                <div class="flex items-center">
-                    <input id="checkbox-194556" aria-describedby="checkbox-1" type="checkbox"
-                        class="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:focus:ring-primary-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="checkbox-194556" class="sr-only">checkbox</label>
-                </div>
-            </td>
             <td class="p-4 text-sm font-normal text-gray-500 overflow-hidden max-w-md dark:text-gray-400">
                 <div class="text-base font-semibold text-gray-900 dark:text-white">
                     {{$book->accession_number}}

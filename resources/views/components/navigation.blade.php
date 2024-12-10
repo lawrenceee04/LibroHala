@@ -58,7 +58,7 @@
             </button>
             <ul id="inventory-management" class="{{ request()->is('inventory/*') ? '' : 'hidden'}}">
                 <li>
-                    <a href="/inventory/books"
+                    <a href="{{ route('books.index') }}"
                         class="flex items-center w-full p-2 text-white transition duration-75 pl-11 group {{ request()->is('inventory/books') ? 'font-semibold bg-sky-500' : 'hover:font-semibold hover:bg-sky-500' }} ">Books</a>
                 </li>
                 <li>
@@ -94,16 +94,8 @@
             </button>
             <ul id="cataloguing" class="{{ request()->is('cataloguing/*') ? '' : 'hidden'}}">
                 <li>
-                    <a href="{{ route('cataloguing.book') }}"
-                        class="flex items-center w-full p-2 text-white transition duration-75 pl-11 group {{ request()->is('cataloguing/book') ? 'font-semibold bg-sky-500' : 'hover:font-semibold hover:bg-sky-500' }} ">Book</a>
-                </li>
-                <li>
-                    <a href="#"
-                        class="flex items-center w-full p-2 transition duration-75 pl-11 group cursor-not-allowed text-gray-300">Journal</a>
-                </li>
-                <li>
-                    <a href="#"
-                        class="flex items-center w-full p-2 transition duration-75 pl-11 group cursor-not-allowed text-gray-300">Thesis</a>
+                    <a href="{{ route('authors.index') }}"
+                        class="flex items-center w-full p-2 text-white transition duration-75 pl-11 group {{ request()->is('cataloguing/authors') ? 'font-semibold bg-sky-500' : 'hover:font-semibold hover:bg-sky-500' }} ">Authors</a>
                 </li>
             </ul>
             <button type="button"

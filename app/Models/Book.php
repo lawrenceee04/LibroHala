@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 
@@ -12,9 +11,23 @@ class Book extends Model
 {
     protected $table = 'books';
 
-
     use HasFactory, SoftDeletes, Searchable;
 
+    // Relations
+    public function authors()
+    {
+        return $this->belongsToMany(Author::class);
+    }
+
+    public function class()
+    {
+        return $this->hasOne(Classe::class);
+    }
+
+
+
+
+    //
     public function searchableAs()
     {
         return 'books_index';
@@ -30,10 +43,10 @@ class Book extends Model
             'Accession Number' => $this->accession_number,
             'Title' => $this->title,
             'Editon' => $this->edition,
-            'Author' => $this->author,
+            'Author' => $this->authors(),
             'Publisher' => $this->publisher,
             'ISBN' => $this->isbn,
-            'Class' => $this->class,
+            'Class' => $this->class(),
             'Topic Area' => $this->topic_area,
             'Cutter Number' => $this->cutter_number,
             'Publication Year' => $this->publication_year,
