@@ -39,7 +39,11 @@ class Visit extends Model
         $yesterdayVisitCount = self::whereDate('check_in_date', today()->subDay())->count();
         $todayVisitCount = self::whereDate('check_in_date', today())->count();
 
-        $percentage = ($todayVisitCount - $yesterdayVisitCount) / $yesterdayVisitCount * 100;
+        if ($yesterdayVisitCount != 0) {
+            $percentage = ($todayVisitCount - $yesterdayVisitCount) / $yesterdayVisitCount * 100;
+        } else {
+            $percentage = 0;
+        }
 
         return number_format($percentage, 0);
     }

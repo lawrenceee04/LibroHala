@@ -1,7 +1,5 @@
 @extends('layouts.base-sidebar')
 
-<x-navigation></x-navigation>
-
 @section('body')
 <div class="mb-4 text-xl font-bold">Dashboard</div>
 
