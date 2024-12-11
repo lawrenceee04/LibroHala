@@ -4,8 +4,6 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
-use App\Models\Author;
-use App\Models\Book;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |ob
 */
+
+Route::fallback(function () {
+    return view('welcome');
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -40,21 +42,13 @@ Route::controller(BookController::class)->group(function () {
     Route::delete('/inventory/books/{id}', 'destroy');
 });
 
-Route::get('/cataloguing/book', function () {
-    return view('cataloguing.book');
-})->name('cataloguing.book');
-
 Route::controller(AuthorController::class)->group(function () {
     Route::get('/cataloguing/authors', 'index')->name('authors.index');
-    Route::get('/cataloguing/author', 'create')->name('author.create');
+    Route::post('/cataloguing/author', 'create')->name('author.create');
     Route::post('/cataloguing/author', 'store')->name('author.store');
     // Search function
     Route::patch('/cataloguing/author/{id}', 'update')->name('author.update');
     Route::delete('/cataloguing/author/{id}', 'destroy');
-});
-
-Route::fallback(function () {
-    return view('welcome');
 });
 
 require __DIR__ . '/auth.php';

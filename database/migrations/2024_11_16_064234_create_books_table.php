@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('edition');
             $table->string('publisher');
-            $table->foreignId('class')->constrained("classes");
+            $table->foreignId('class')->constrained('classes');
             $table->double('topic_area');
             $table->string('publication_year');
             $table->text('description')->nullable();

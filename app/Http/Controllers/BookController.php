@@ -14,10 +14,13 @@ class BookController extends Controller
 
         $books = Book::orderBy($sortBy, $sortOrder)->paginate(10);
 
-        return view('inventory.books.index', compact('books', 'sortBy', 'sortOrder'));
+        return view('inventory.book.index', compact('books', 'sortBy', 'sortOrder'));
     }
 
-    // public function create(Request $request) {}
+    public function create(Request $request)
+    {
+        return view('inventory.book.create');
+    }
 
     public function store(Request $request)
     {
@@ -69,7 +72,7 @@ class BookController extends Controller
             return $meilisearch->search($query, $options);
         })->paginate(20);
 
-        return view('inventory.books.index', [
+        return view('inventory.book.index', [
             'books' => $search_result,
             'sortBy' => $sortBy,
             'sortOrder' => $sortOrder,

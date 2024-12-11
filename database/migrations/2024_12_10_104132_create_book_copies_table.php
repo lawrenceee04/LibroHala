@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('book_copies', function (Blueprint $table) {
             $table->id();
             $table->foreignId("books_id")->constrained("books");
+            $table->integer("copies");
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

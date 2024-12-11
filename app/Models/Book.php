@@ -19,15 +19,27 @@ class Book extends Model
         return $this->belongsToMany(Author::class);
     }
 
+    public function cutter_number()
+    {
+        return $this->belongsToMany(Author::class)->firstWhere('is_primary_author', '=', 'true');
+    }
+
     public function class()
     {
         return $this->hasOne(Classe::class);
     }
 
+    public function publishers()
+    {
+        return $this->belongsToMany(Publisher::class);
+    }
+
+    public function copies()
+    {
+        return $this->hasMany(BookCopy::class);
+    }
 
 
-
-    //
     public function searchableAs()
     {
         return 'books_index';
@@ -35,45 +47,35 @@ class Book extends Model
 
     public function toSearchableArray()
     {
-        // All columns searchable
-        // $array = $this->toArray();
-        // return $array;
-
         return [
             'Accession Number' => $this->accession_number,
             'Title' => $this->title,
             'Editon' => $this->edition,
             'Author' => $this->authors(),
-            'Publisher' => $this->publisher,
+            'Publisher' => $this->publishers(),
             'ISBN' => $this->isbn,
             'Class' => $this->class(),
             'Topic Area' => $this->topic_area,
-            'Cutter Number' => $this->cutter_number,
+            'Cutter Number' => $this->cutter_number(),
             'Publication Year' => $this->publication_year,
-            'Copies' => $this->copies,
+            'Copies' => $this->copies(),
             'Status' => $this->status,
             'Genre' => $this->genre,
             'Description' => $this->description,
         ];
     }
 
-    protected $attributes = [
-        'status' => 'Available',
-    ];
+    protected $attributes = [];
 
     protected $fillable = [
         'accession_number',
+        'isbn',
         'title',
         'edition',
-        'author',
         'publisher',
-        'isbn',
         'class',
         'topic_area',
-        'cutter_number',
         'publication_year',
-        'copies',
-        'genre',
         'description'
     ];
 }
