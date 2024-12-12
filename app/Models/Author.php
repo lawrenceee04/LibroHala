@@ -9,7 +9,12 @@ use Laravel\Scout\Searchable;
 
 class Author extends Model
 {
-    protected $table = 'book_authors';
+    protected $table = 'authors';
 
     use HasFactory, SoftDeletes, Searchable;
+
+    public function books()
+    {
+        return $this->belongsToMany(Book::class, 'book_authors');
+    }
 }

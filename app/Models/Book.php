@@ -16,7 +16,7 @@ class Book extends Model
     // Relations
     public function authors()
     {
-        return $this->belongsToMany(Author::class);
+        return $this->belongsToMany(Author::class, 'book_authors');
     }
 
     public function cutter_number()

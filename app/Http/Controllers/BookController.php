@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
@@ -19,16 +20,29 @@ class BookController extends Controller
 
     public function create(Request $request)
     {
-        return view('inventory.book.create');
+        return view('inventory.book.create', [
+            'authors' => Author::all()->unique(),
+            // 'authors' => [
+            //     [
+            //         'id' => 1,
+            //         'name' => 'Lawrence Garcia'
+            //     ],
+            //     [
+            //         'id' => 2,
+            //         'name' => 'Ryan Azur'
+            //     ]
+            // ]
+        ]);
     }
 
     public function store(Request $request)
     {
-        $book = $request->validateWithBag("addBook", [
+        $bookConfirmed = $request->validateWithBag("addBook", [
             'accession_number' => ['required', 'string'],
             'title' => ['required', 'string', 'max:255'],
             'edition' => ['required', 'string'],
-            'author' => ['required', 'string', 'max:255'],
+            'authors' => ['required', 'array'],
+            'authors.*' => ['exists:authors, id'],
             'publisher' => ['required', 'string', 'max:255'],
             'isbn' => ['required', 'numeric', 'digits_between:10, 13'],
             'class' => ['required', 'string', 'alpha:ascii', 'size:2'],
@@ -40,23 +54,24 @@ class BookController extends Controller
             'description' => ['nullable', 'string'],
         ]);
 
-        Book::create([
-            'accession_number' => $book['accession_number'],
-            'title' => $book['title'],
-            'edition' => $book['edition'],
-            'author' => $book['author'],
-            'publisher' => $book['publisher'],
-            'isbn' => $book['isbn'],
-            'class' => $book['class'],
-            'topic_area' => $book['topic_area'],
-            'cutter_number' => $book['cutter_number'],
-            'publication_year' => $book['publication_year'],
-            'copies' => $book['copies'],
-            'genre' => $book['genre'],
-            'description' => $book['description'],
+        $book = Book::create([
+            'accession_number' => $bookConfirmed['accession_number'],
+            'title' => $bookConfirmed['title'],
+            'edition' => $bookConfirmed['edition'],
+            'publisher' => $bookConfirmed['publisher'],
+            'isbn' => $bookConfirmed['isbn'],
+            'class' => $bookConfirmed['class'],
+            'topic_area' => $bookConfirmed['topic_area'],
+            'cutter_number' => $bookConfirmed['cutter_number'],
+            'publication_year' => $bookConfirmed['publication_year'],
+            'copies' => $bookConfirmed['copies'],
+            'genre' => $bookConfirmed['genre'],
+            'description' => $bookConfirmed['description'],
         ]);
 
-        return redirect(route('books.index'));
+        $book->authors()->attach($bookConfirmed['authors']);
+
+        return redirect(route('books.index'))->with('success', 'Book created successfully');
     }
 
     public function search(Request $request)
