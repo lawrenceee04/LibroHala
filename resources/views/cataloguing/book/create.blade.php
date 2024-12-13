@@ -5,7 +5,6 @@
 
 <form method="POST" action="{{route('book.store')}}" class="w-full p-4 md:p-5">
        @csrf
-
        <div class="grid gap-4 mb-4 grid-cols-4">
 
               <div class="col-span-4">

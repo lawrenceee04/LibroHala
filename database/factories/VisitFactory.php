@@ -17,7 +17,7 @@ class VisitFactory extends Factory
     public function definition(): array
     {
         return [
-            'patron_id' => fake()->numberBetween(1, 10),
+            'patron_id' => '23' . '-0000' . fake()->numberBetween(0, 9),
             'check_in_date' => fake()->date(),
             'check_in_time' => fake()->time(),
             'check_out_date' => fake()->date(),

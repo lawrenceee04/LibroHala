@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('visits', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('patron_id')->constrained('patrons')->onDelete('cascade');
+            $table->string('patron_id', 50);
             $table->date('check_in_date');
             $table->time('check_in_time');
-            $table->date('check_out_date');
-            $table->time('check_out_time');
+            $table->date('check_out_date')->nullable(); // Allow null values
+            $table->time('check_out_time')->nullable(); // Allow null values
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('patron_id')->references('patron_id')->on('patrons')->onDelete('cascade');
         });
     }
 

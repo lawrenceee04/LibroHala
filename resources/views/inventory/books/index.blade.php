@@ -52,16 +52,16 @@
                             sort</label>
                     </div>
                 </li>
-                <x-sort-by sortBy="Accession Number">
+                {{-- <x-sort-by sortBy="Accession Number">
                     Accession Number
                 </x-sort-by>
                 <x-sort-by sortBy="Title">
                     Title
-                </x-sort-by>
+                </x-sort-by> --}}
                 <x-sort-by sortBy="Edition">
                     Edition
                 </x-sort-by>
-                <x-sort-by sortBy="Author">
+                {{-- <x-sort-by sortBy="Author">
                     Author
                 </x-sort-by>
                 <x-sort-by sortBy="Publisher">
@@ -69,13 +69,13 @@
                 </x-sort-by>
                 <x-sort-by sortBy="ISBN">
                     ISBN
-                </x-sort-by>
+                </x-sort-by> --}}
                 <x-sort-by sortBy="Class">
                     Class
                 </x-sort-by>
-                <x-sort-by sortBy="Topic Area">
+                {{-- <x-sort-by sortBy="Topic Area">
                     Topic Area
-                </x-sort-by>
+                </x-sort-by> --}}
                 <x-sort-by sortBy="Cutter Number">
                     Cutter Number
                 </x-sort-by>
@@ -85,18 +85,18 @@
                 <x-sort-by sortBy="Copies">
                     Copies
                 </x-sort-by>
-                <x-sort-by sortBy="Genre">
+                {{-- <x-sort-by sortBy="Genre">
                     Genre
-                </x-sort-by>
-                <x-sort-by sortBy="Description">
+                </x-sort-by> --}}
+                {{-- <x-sort-by sortBy="Description">
                     Description
-                </x-sort-by>
+                </x-sort-by> --}}
             </ul>
         </div>
     </div>
 
     <div class="flex items-center justify-end">
-        <a href="{{ route('cataloguing.book') }}"
+        <a href="{{ route('cataloguing.book.create') }}"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add
             new book</a>
     </div>

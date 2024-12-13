@@ -102,7 +102,7 @@
             </button>
             <ul id="cataloguing" class="{{ request()->is('cataloguing/*') ? '' : 'hidden'}}">
                 <li>
-                    <a href="{{ route('cataloguing.book') }}"
+                    <a href="{{ route('cataloguing.book.create') }}"
                         class="flex items-center w-full p-2 text-white transition duration-75 pl-11 group {{ request()->is('cataloguing/book/create') ? 'font-semibold bg-sky-500' : 'hover:font-semibold hover:bg-sky-500' }} ">Book</a>
                 </li>
                 <li>

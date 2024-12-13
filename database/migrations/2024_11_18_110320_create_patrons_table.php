@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('patrons', function (Blueprint $table) {
-            $table->id();
-            $table->string('patron_id')->unique();
+            $table->string('patron_id', 50)->primary();
             $table->string('first_name');
             $table->string('middle_name');
             $table->string('last_name');

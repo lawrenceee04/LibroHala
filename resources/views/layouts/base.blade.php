@@ -21,9 +21,12 @@
         </div>
 
         <div class="flex">
-            <a class="hover:bg-sky-900 text-neutral-50 text-sm px-2 py-3 rounded-md" href="#">Kiosk</a>
-            <a class="hover:bg-sky-900 text-neutral-50 text-sm px-2 py-3 rounded-md" href="login">Login</a>
-            <a class="hover:bg-sky-900 text-neutral-50 text-sm px-2 py-3 rounded-md" href="register">Register</a>
+            <a class="hover:bg-sky-900 text-neutral-50 text-sm px-2 py-3 rounded-md"
+                href="{{ route('kiosk.checkinout.index') }}">Kiosk</a>
+            <a class="hover:bg-sky-900 text-neutral-50 text-sm px-2 py-3 rounded-md"
+                href="{{ route('login') }}">Login</a>
+            <a class="hover:bg-sky-900 text-neutral-50 text-sm px-2 py-3 rounded-md"
+                href="{{ route('register') }}">Register</a>
         </div>
     </nav>
     @yield('body')
