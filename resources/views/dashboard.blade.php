@@ -25,7 +25,7 @@
     </div>
 
     <div class="col-span-4 grid grid-cols-1 lg:grid-cols-4 gap-4 place-items-center lg:place-items-stretch">
-        <div class="container lg:col-span-3 text-white rounded-lg shadow bg-sky-700 p-4 md:p-6">
+        <div class="container lg:col-span-3 rounded-lg shadow bg-blue-600 p-4 md:p-6">
             <div>
                 {!! $chart->container() !!}
                 <script src="{{ $chart->cdn() }}"></script>
@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="container lg:col-span-1 flex flex-col gap-4">
-            <div class="container w-full p-6 bg-sky-700 text-white flex flex-1 flex-col rounded-md overflow-auto">
+            <div class="container w-full p-6 bg-blue-600 text-white flex flex-1 flex-col rounded-md overflow-auto">
                 <div class="mb-6 text-2xl font-bold text-start">Today</div>
                 <div class="container w-full text-white flex flex-1 flex-col gap-8">
                     <div class="flex flex-col w-full md:items-start">

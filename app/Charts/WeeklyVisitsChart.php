@@ -19,7 +19,7 @@ class WeeklyVisitsChart
     {
         return $this->chart->areaChart()
             ->setFontColor('#ffffff')
-            ->setColors(['#ffffff', '#24aee4'])
+            ->setColors(['#16E988', '#E91677'])
             ->setTitle('Visits this week')
             ->setSubtitle('Visits vs Issued Books')
             ->addData('Visits', VisitController::lastWeek())
