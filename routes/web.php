@@ -31,15 +31,15 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(BookController::class)->group(function () {
     Route::get('/inventory/books', 'index')->name('books.index');
-    Route::post('/inventory/book/create', 'create')->name('book.create');
+    Route::post('/inventory/book/create', 'store')->name('book.store');
     Route::get('/inventory/books/search', 'search')->name('books.search');
     Route::post('/inventory/books', 'sort');
     Route::patch('/inventory/book/{id}', 'update');
     Route::delete('/inventory/books/{id}', 'destroy');
 });
 
-Route::get('/cataloguing/book', function () {
-    return view('cataloguing.book');
+Route::get('/cataloguing/book/create', function () {
+    return view('cataloguing.book.create');
 })->name('cataloguing.book');
 
 Route::fallback(function () {

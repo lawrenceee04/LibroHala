@@ -58,10 +58,20 @@
                     </div>
                     <div class="flex flex-col w-full md:items-start">
                         <div class="flex flex-row items-end gap-3">
-                            <div class="mb-2 text-6xl font-extrabold text-center">0</div>
+                            <div class="mb-2 text-6xl font-extrabold text-center"> {{ $issued_books }} </div>
                             <div class="flex flex-row justify-center items-center gap-2">
-                                <i class="fa-solid fa-caret-down text-xl" style="color: #ef4444"></i>
-                                <div class="text-lg font-semibold text-red-400">N/A</div>
+                                @if ($issued_books < 0) <i class="fa-solid fa-caret-down text-xl"
+                                    style="color: #ef4444"></i>
+                                    <div class="text-lg font-semibold text-red-400"> {{ $issued_books }}%
+                                    </div>
+                                    @elseif ($issued_books > 0)
+                                    <i class="fa-solid fa-caret-up text-xl" style="color: #22c55e"></i>
+                                    <div class="text-lg font-semibold text-green-400"> {{ $issued_books }}%
+                                    </div>
+                                    @else
+                                    <div class="text-lg font-semibold text-neutral-200"> --%
+                                    </div>
+                                    @endif
                             </div>
                         </div>
                         <div class="mb-2 text-lg">Issued Books</div>

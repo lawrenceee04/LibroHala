@@ -3,7 +3,7 @@
 @section('body')
 <div class="mb-4 text-xl font-bold">Add book</div>
 
-<form method="POST" action="{{route('book.create')}}" class="w-full p-4 md:p-5">
+<form method="POST" action="{{route('book.store')}}" class="w-full p-4 md:p-5">
        @csrf
 
        <div class="grid gap-4 mb-4 grid-cols-4">
