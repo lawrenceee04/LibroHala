@@ -23,7 +23,7 @@
                 <img class="w-16 h-16 rounded-full"
                     src="https://gravatar.com/avatar/{{ hash('sha256', strtolower(trim(Auth::user()->email))) }}?d=retro&s=200"
                     alt="">
-                <div>
+                <div class="pr-5 overflow-hidden">
                     <div class="font-semibold">{{ Auth::user()->name }}</div>
                     <div class="font-light">Admin</div>
                 </div>
@@ -32,8 +32,10 @@
                 class="px-6 py-3 {{ request()->is('dashboard') ? 'font-semibold bg-sky-500' : 'hover:font-semibold hover:bg-sky-500' }} ">Dashboard</a>
             <button type="button"
                 class="px-6 py-3 text-start flex flex-row items-center gap-4 cursor-not-allowed text-gray-300"
-                aria-controls="dropdown-example" data-collapse-toggle="library-services" disabled>Library Services
-                <i class="fa-solid fa-chevron-down" style="color: #d1d5db;"></i>
+                aria-controls="dropdown-example"
+                x-data="{ open: {{ request()->is('libraryservices/*') ? 'true' : 'false' }} }" @click="open = !open"
+                data-collapse-toggle="library-services" disabled>Library Services
+                <i :class="open ? 'fa-chevron-up' : 'fa-chevron-down'" class="fa-solid" style="color: #d1d5db;"></i>
             </button>
             <ul id="library-services" class="{{ request()->is('libraryservices/*') ? '' : 'hidden'}}">
                 <li>
@@ -53,8 +55,10 @@
                 Collection</a>
             <button type="button"
                 class="px-6 py-3 hover:font-semibold hover:bg-sky-500 text-start flex flex-row items-center gap-4"
-                aria-controls="dropdown-example" data-collapse-toggle="inventory-management">Inventory Management
-                <i class="fa-solid fa-chevron-down" style="color: #ffffff;"></i>
+                aria-controls="dropdown-example"
+                x-data="{ open: {{ request()->is('inventory/*') ? 'true' : 'false' }} }" @click="open = !open"
+                data-collapse-toggle="inventory-management">Inventory Management
+                <i :class="open ? 'fa-chevron-up' : 'fa-chevron-down'" class="fa-solid" style="color: #ffffff;"></i>
             </button>
             <ul id="inventory-management" class="{{ request()->is('inventory/*') ? '' : 'hidden'}}">
                 <li>
@@ -72,8 +76,10 @@
             </ul>
             <button type="button"
                 class="px-6 py-3 text-start flex flex-row items-center gap-4 cursor-not-allowed text-gray-300"
-                aria-controls="dropdown-example" data-collapse-toggle="reports" disabled>Reporting
-                <i class="fa-solid fa-chevron-down" style="color: #d1d5db;"></i>
+                aria-controls="dropdown-example"
+                x-data="{ open: {{ request()->is('reporting/*') ? 'true' : 'false' }} }" @click="open = !open"
+                data-collapse-toggle="reports" disabled>Reporting
+                <i :class="open ? 'fa-chevron-up' : 'fa-chevron-down'" class="fa-solid" style="color: #d1d5db;"></i>
             </button>
             <ul id="reports" class="hidden">
                 <li>
@@ -89,13 +95,15 @@
             </ul>
             <button type="button"
                 class="px-6 py-3 hover:font-semibold hover:bg-sky-500 text-start flex flex-row items-center gap-4"
-                aria-controls="dropdown-example" data-collapse-toggle="cataloguing">Cataloguing
-                <i class="fa-solid fa-chevron-down" style="color: #ffffff;"></i>
+                aria-controls="dropdown-example"
+                x-data="{ open: {{ request()->is('cataloguing/*') ? 'true' : 'false' }} }" @click="open = !open"
+                data-collapse-toggle="cataloguing">Cataloguing
+                <i :class="open ? 'fa-chevron-up' : 'fa-chevron-down'" class="fa-solid" style="color: #ffffff;"></i>
             </button>
             <ul id="cataloguing" class="{{ request()->is('cataloguing/*') ? '' : 'hidden'}}">
                 <li>
                     <a href="{{ route('cataloguing.book') }}"
-                        class="flex items-center w-full p-2 text-white transition duration-75 pl-11 group {{ request()->is('cataloguing/book') ? 'font-semibold bg-sky-500' : 'hover:font-semibold hover:bg-sky-500' }} ">Book</a>
+                        class="flex items-center w-full p-2 text-white transition duration-75 pl-11 group {{ request()->is('cataloguing/book/create') ? 'font-semibold bg-sky-500' : 'hover:font-semibold hover:bg-sky-500' }} ">Book</a>
                 </li>
                 <li>
                     <a href="#"
@@ -108,8 +116,10 @@
             </ul>
             <button type="button"
                 class="px-6 py-3 text-start flex flex-row items-center gap-4 cursor-not-allowed text-gray-300"
-                aria-controls="dropdown-example" data-collapse-toggle="staff-roles" disabled>Staff & Roles
-                <i class="fa-solid fa-chevron-down" style="color: #d1d5db;"></i>
+                aria-controls="dropdown-example"
+                x-data="{ open: {{ request()->is('staff-roles/*') ? 'true' : 'false' }} }" @click="open = !open"
+                data-collapse-toggle="staff-roles" disabled>Staff & Roles
+                <i :class="open ? 'fa-chevron-up' : 'fa-chevron-down'" class="fa-solid" style="color: #d1d5db;"></i>
             </button>
             <ul id="staff-roles" class="hidden">
                 <li>

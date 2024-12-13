@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Book;
+use App\Models\BorrowingTransaction;
 use App\Models\Journal;
 use App\Models\Patron;
 use App\Models\User;
@@ -24,16 +25,21 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        //        User::factory(10)->create();
-        User::factory()->create([
-            'name' => 'Lawrence Garcia',
-            'email' => 'lawrencelg04@gmail.com',
-            'password' => '$2y$10$Krdg5VilynNhWrEvf9YwOeyhNKWVvBVmdmgRmVJ5abBVcSZt/C4ly'
-        ]);
+        // User::factory(10)->create();
+        // User::factory()->create([
+        //     'name' => 'Lawrence Garcia',
+        //     'email' => 'lawrencelg04@gmail.com',
+        //     'password' => '$2y$10$Krdg5VilynNhWrEvf9YwOeyhNKWVvBVmdmgRmVJ5abBVcSZt/C4ly'
+        // ]);
+
+        // Patron::factory(100)->create();
 
         Book::factory(100)->create();
-        Patron::factory(585)->create();
-        Visit::factory(200)->create();
+
         Journal::factory(40)->create();
+
+        Visit::factory(200)->create();
+
+        BorrowingTransaction::factory(100)->create();
     }
 }

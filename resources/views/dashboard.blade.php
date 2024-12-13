@@ -40,13 +40,15 @@
                         <div class="flex flex-row items-end gap-3">
                             <div class="mb-2 text-6xl font-extrabold text-center"> {{ $visits }} </div>
                             <div class="flex flex-row justify-center items-center gap-2">
-                                @if ($percentComparedYesterday < 0) <i class="fa-solid fa-caret-down text-xl"
+                                @if ($visitsPercentComparedYesterday < 0) <i class="fa-solid fa-caret-down text-xl"
                                     style="color: #ef4444"></i>
-                                    <div class="text-lg font-semibold text-red-400"> {{ $percentComparedYesterday }}%
+                                    <div class="text-lg font-semibold text-red-400"> {{ $visitsPercentComparedYesterday
+                                        }}%
                                     </div>
-                                    @elseif ($percentComparedYesterday > 0)
+                                    @elseif ($visitsPercentComparedYesterday > 0)
                                     <i class="fa-solid fa-caret-up text-xl" style="color: #22c55e"></i>
-                                    <div class="text-lg font-semibold text-green-400"> {{ $percentComparedYesterday }}%
+                                    <div class="text-lg font-semibold text-green-400"> {{
+                                        $visitsPercentComparedYesterday }}%
                                     </div>
                                     @else
                                     <div class="text-lg font-semibold text-neutral-200"> --%
@@ -58,15 +60,19 @@
                     </div>
                     <div class="flex flex-col w-full md:items-start">
                         <div class="flex flex-row items-end gap-3">
-                            <div class="mb-2 text-6xl font-extrabold text-center"> {{ $issued_books }} </div>
+                            <div class="mb-2 text-6xl font-extrabold text-center"> {{ $issuedBooks }} </div>
                             <div class="flex flex-row justify-center items-center gap-2">
-                                @if ($issued_books < 0) <i class="fa-solid fa-caret-down text-xl"
+                                @if ($issuedBooksPercentComparedYesterday < 0) <i class="fa-solid fa-caret-down text-xl"
                                     style="color: #ef4444"></i>
-                                    <div class="text-lg font-semibold text-red-400"> {{ $issued_books }}%
+                                    <div class="text-lg font-semibold text-red-400"> {{
+                                        $issuedBooksPercentComparedYesterday
+                                        }}%
                                     </div>
-                                    @elseif ($issued_books > 0)
+                                    @elseif ($issuedBooksPercentComparedYesterday > 0)
                                     <i class="fa-solid fa-caret-up text-xl" style="color: #22c55e"></i>
-                                    <div class="text-lg font-semibold text-green-400"> {{ $issued_books }}%
+                                    <div class="text-lg font-semibold text-green-400"> {{
+                                        $issuedBooksPercentComparedYesterday
+                                        }}%
                                     </div>
                                     @else
                                     <div class="text-lg font-semibold text-neutral-200"> --%
@@ -76,16 +82,30 @@
                         </div>
                         <div class="mb-2 text-lg">Issued Books</div>
                     </div>
-                    {{-- <div class="flex flex-col w-full md:items-start">--}}
-                        {{-- <div class="flex flex-row items-end gap-3">--}}
-                            {{-- <div class="mb-2 text-6xl font-extrabold text-center">30</div>--}}
-                            {{-- <div class="flex flex-row justify-center items-center gap-2">--}}
-                                {{-- <i class="fa-solid fa-caret-up text-xl" style="color: #4ade80"></i>--}}
-                                {{-- <div class="text-xl text-green-400">0.66%</div>--}}
-                                {{-- </div>--}}
-                            {{-- </div>--}}
-                        {{-- <div class="mb-2 text-lg">Returned Books</div>--}}
-                        {{-- </div>--}}
+                    <div class="flex flex-col w-full md:items-start">
+                        <div class="flex flex-row items-end gap-3">
+                            <div class="mb-2 text-6xl font-extrabold text-center"> {{ $returnedBooks }} </div>
+                            <div class="flex flex-row justify-center items-center gap-2">
+                                @if ($returnedBooksPercentComparedYesterday < 0) <i
+                                    class="fa-solid fa-caret-down text-xl" style="color: #ef4444"></i>
+                                    <div class="text-lg font-semibold text-red-400"> {{
+                                        $returnedBooksPercentComparedYesterday
+                                        }}%
+                                    </div>
+                                    @elseif ($returnedBooksPercentComparedYesterday > 0)
+                                    <i class="fa-solid fa-caret-up text-xl" style="color: #22c55e"></i>
+                                    <div class="text-lg font-semibold text-green-400"> {{
+                                        $returnedBooksPercentComparedYesterday
+                                        }}%
+                                    </div>
+                                    @else
+                                    <div class="text-lg font-semibold text-neutral-200"> --%
+                                    </div>
+                                    @endif
+                            </div>
+                        </div>
+                        <div class="mb-2 text-lg">Returned Books</div>
+                    </div>
                 </div>
             </div>
         </div>

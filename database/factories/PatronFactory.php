@@ -17,7 +17,7 @@ class PatronFactory extends Factory
     public function definition(): array
     {
         return [
-            'patron_id' => fake()->numberBetween(20,24) .'-'. fake()->numerify('#####'),
+            'patron_id' => '23' . '-0000' . fake()->numberBetween(0, 9),
             'first_name' => fake()->firstName(),
             'middle_name' => fake()->lastName(),
             'last_name' => fake()->lastName(),

@@ -124,12 +124,12 @@
             <x-book-table-column>
                 Author
             </x-book-table-column>
-            <x-book-table-column>
+            {{-- <x-book-table-column>
                 Publisher
-            </x-book-table-column>
-            <x-book-table-column>
+            </x-book-table-column> --}}
+            {{-- <x-book-table-column>
                 ISBN
-            </x-book-table-column>
+            </x-book-table-column> --}}
             <x-book-table-column>
                 Class
             </x-book-table-column>
@@ -148,12 +148,12 @@
             <x-book-table-column>
                 Status
             </x-book-table-column>
-            <x-book-table-column>
+            {{-- <x-book-table-column>
                 Genre
-            </x-book-table-column>
-            <x-book-table-column>
+            </x-book-table-column> --}}
+            {{-- <x-book-table-column>
                 Description
-            </x-book-table-column>
+            </x-book-table-column> --}}
             <x-book-table-column>
                 Edit
             </x-book-table-column>
@@ -184,10 +184,10 @@
                 {{$book->edition}} </td>
             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {{$book->author}} </td>
-            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {{$book->publisher}} </td>
-            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {{$book->isbn}} </td>
+            {{-- <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {{$book->publisher}} </td> --}}
+            {{-- <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {{$book->isbn}} </td> --}}
             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white uppercase">
                 {{$book->class}} </td>
             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -201,11 +201,11 @@
             <td
                 class="p-4 text-base font-medium text-gray-900 whitespace-nowrap {{ $book->status == 'Available' ? 'bg-green-500': 'bg-red-500' }}  text-white text-center">
                 {{$book->status}} </td>
-            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {{$book->genre}} </td>
-            <td
+            {{-- <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {{$book->genre}} </td> --}}
+            {{-- <td
                 class="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
-                {{$book->description}} </td>
+                {{$book->description}} </td> --}}
 
             <td class="p-4 space-x-2 whitespace-nowrap">
 

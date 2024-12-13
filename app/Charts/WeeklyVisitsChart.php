@@ -2,7 +2,8 @@
 
 namespace App\Charts;
 
-use App\Models\Visit;
+use App\Http\Controllers\BorrowingTransactionController;
+use App\Http\Controllers\VisitController;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class WeeklyVisitsChart
@@ -21,8 +22,8 @@ class WeeklyVisitsChart
             ->setColors(['#ffffff', '#24aee4'])
             ->setTitle('Visits this week')
             ->setSubtitle('Visits vs Issued Books')
-            ->addData('Visits', Visit::lastWeek())
-            ->addData('Issued Books', [])
+            ->addData('Visits', VisitController::lastWeek())
+            ->addData('Issued Books', BorrowingTransactionController::issuedBooksLastWeek())
             ->setXAxis([
                 now()->subDays(6)->isoFormat('MMM D'),
                 now()->subDays(5)->isoFormat('MMM D'),

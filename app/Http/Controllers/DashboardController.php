@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Charts\WeeklyVisitsChart;
 use App\Models\Book;
+use App\Models\BorrowingTransaction;
 use App\Models\Issued;
 use App\Models\Journal;
 use App\Models\Patron;
@@ -22,18 +23,20 @@ class DashboardController extends Controller
             'patrons' => Patron::all()->count(),
             'books' => Book::all()->count(),
             'thesis' => Journal::all()->count(),
-            'issued' => Issued::all()->count(),
+            'issued' => BorrowingTransaction::all()->count(),
 
             // Visits this week
             'chart' => $chart->build(),
 
             // Today
-            'visits' => Visit::today(),
-            'percentComparedYesterday' => Visit::percentComparedYesterday(),
+            'visits' => VisitController::today(),
+            'visitsPercentComparedYesterday' => VisitController::percentComparedYesterday(),
 
-            'issued_books' => 0,
+            'issuedBooks' => BorrowingTransactionController::issuedBooksToday(),
+            'issuedBooksPercentComparedYesterday' => BorrowingTransactionController::issuedBooksPercentComparedYesterday(),
 
-
+            'returnedBooks' => BorrowingTransactionController::returnedBooksToday(),
+            'returnedBooksPercentComparedYesterday' => BorrowingTransactionController::returnedBooksPercentComparedYesterday(),
         ]);
     }
 }

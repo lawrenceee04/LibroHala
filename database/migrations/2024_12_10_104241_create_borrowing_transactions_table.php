@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('borrowing_transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("patron_id")->constrained('patrons');
-            $table->foreignId("book_copies_id")->constrained('book_copies');
+            $table->foreignId("patron_id")->constrained('patrons')->onDelete('cascade');
+            $table->foreignId("book_id")->constrained('books')->onDelete('cascade');
             $table->timestamp("borrow_date");
             $table->timestamp("due_date");
             $table->timestamp("return_date")->nullable();
             $table->string("status");
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

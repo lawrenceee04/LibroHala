@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('patrons', function (Blueprint $table) {
             $table->id();
-            $table->string('patron_id');
+            $table->string('patron_id')->unique();
             $table->string('first_name');
             $table->string('middle_name');
             $table->string('last_name');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
