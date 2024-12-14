@@ -10,6 +10,7 @@ use App\Models\Patron;
 use App\Models\User;
 use App\Models\Visit;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,12 +26,12 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        // User::factory(10)->create();
-        // User::factory()->create([
-        //     'name' => 'Lawrence Garcia',
-        //     'email' => 'lawrencelg04@gmail.com',
-        //     'password' => '$2y$10$Krdg5VilynNhWrEvf9YwOeyhNKWVvBVmdmgRmVJ5abBVcSZt/C4ly'
-        // ]);
+        User::factory(10)->create();
+        User::factory()->create([
+            'name' => 'Lawrence Garcia',
+            'email' => 'lawrencelg04@gmail.com',
+            'password' => Hash::make('lawrence')
+        ]);
 
         // Patron::factory(100)->create();
 
