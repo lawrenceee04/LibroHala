@@ -57,7 +57,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 // Allow unauthenticated access to the kiosk check-in/out route
 Route::controller(VisitController::class)->group(function () {
-    Route::get('/kiosk/checkinout/index', 'index')->name('kiosk.checkinout.index');
+    Route::get('/kiosk', 'index')->name('kiosk.checkinout.index');
     Route::post('/kiosk/checkinout/store', 'store')->name('kiosk.checkinout.store');
     Route::get('/kiosk/checkinout/show', 'show')->name('kiosk.checkinout.show');
 });

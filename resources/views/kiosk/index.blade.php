@@ -9,12 +9,34 @@
         class="w-full sm:max-w-lg mt-6 px-10 py-10 bg-sky-100 shadow-md border-4 border-green-700 overflow-hidden sm:rounded-lg text-center">
         <p class="font-bold text-2xl text-center pb-8">Check In & Check Out</p>
 
-        @if (session('isSuccess'))
+        @if (session()->has('isSuccess'))
+        @if (session('checkType') == "check_in")
         <div id="success-alert"
             class="items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800 transition-opacity duration-1000"
             role="alert">
             <div>
-                <span class="font-medium text-xl text-center">Welcome to the Library!</span>
+                <i class="fa-solid fa-hand-sparkles fa-2xl fa-bounce"></i>
+                <p class="font-medium text-xl text-center mt-3">Welcome to the Library!</p>
+                <p class="font-bold text-2xl">{{ session('isSuccess')['first_name'] . '
+                    ' . session('isSuccess')['last_name']}}</p>
+            </div>
+
+            <script>
+                setTimeout(function() {
+                        document.getElementById('success-alert').classList.add('opacity-0');
+                        setTimeout(function() {
+                            document.getElementById('success-alert').style.display = 'none';
+                        }, 500); // 500 milliseconds = 0.5 seconds
+                    }, 1500); // 5000 milliseconds = 5 seconds
+            </script>
+        </div>
+        @else
+        <div id="success-alert"
+            class="items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800 transition-opacity duration-1000"
+            role="alert">
+            <div>
+                <i class="fa-solid fa-face-grin-wide fa-2xl fa-bounce"></i>
+                <p class="font-medium text-xl text-center mt-3">Goodbye!</p>
                 <p class="font-bold text-2xl">{{ session('isSuccess')['first_name'] . '
                     ' . session('isSuccess')['last_name']}}</p>
             </div>
@@ -28,7 +50,7 @@
                 }, 1500); // 5000 milliseconds = 5 seconds
             </script>
         </div>
-
+        @endif
         @endif
 
         @if ($errors->checkinout->first('patron_id'))

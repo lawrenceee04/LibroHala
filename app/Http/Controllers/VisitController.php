@@ -21,7 +21,7 @@ class VisitController extends Controller
         ]);
 
         $existingVisit = Visit::where('patron_id', $record['patron_id'])
-            ->whereNotNull('check_in_date')
+            ->whereNotNull('check_in_date')->whereDate('check_in_date', today())
             ->whereNull('check_out_date')
             ->first();
 
@@ -30,17 +30,18 @@ class VisitController extends Controller
                 'check_out_date' => today(),
                 'check_out_time' => now()->format('H:i:s')
             ]);
+            session()->flash('checkType', 'check_out');
         } else {
             Visit::create([
                 'patron_id' => $record['patron_id'],
                 'check_in_date' => today(),
                 'check_in_time' => now()->format('H:i:s')
             ]);
+            session()->flash('checkType', 'check_in');
         }
 
         // Flash success message to the session
         session()->flash('isSuccess', Patron::where('patron_id', $record['patron_id'])->select('first_name', 'last_name')->first());
-
         return redirect()->back();
     }
 
