@@ -34,6 +34,15 @@ class DatabaseSeeder extends Seeder
 
         // Patron::factory(100)->create();
 
+        for ($i = 0; $i < 100; $i++) {
+            Patron::create([
+                'patron_id' => '23-' . str_pad($i, 5, '0', STR_PAD_LEFT),
+                'first_name' => fake()->firstName(),
+                'middle_name' => fake()->lastName(),
+                'last_name' => fake()->lastName(),
+            ]);
+        }
+
         Book::factory(100)->create();
 
         Journal::factory(40)->create();

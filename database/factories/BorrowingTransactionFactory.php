@@ -17,7 +17,7 @@ class BorrowingTransactionFactory extends Factory
     public function definition(): array
     {
         return [
-            'patron_id' => '23' . '-0000' . fake()->numberBetween(0, 9),
+            'patron_id' => '23-' . str_pad(5, 5, '0', STR_PAD_LEFT),
             'book_id' => fake()->numberBetween(1, 100),
             'borrow_date' => fake()->dateTimeBetween('-15 days', 'now'),
             'due_date' => fake()->dateTimeBetween('-5 days', 'now'),
