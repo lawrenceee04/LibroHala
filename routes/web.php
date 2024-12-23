@@ -6,32 +6,13 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VisitController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|ob
-*/
-
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
-
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
-
-Route::get('/email/verify', function () {
-    return view('auth.verify-email');
-})->middleware('auth')->name('verification.notice');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     // Invokable Dashboard Controller
