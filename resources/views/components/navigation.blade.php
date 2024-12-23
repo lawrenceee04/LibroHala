@@ -8,6 +8,8 @@
                 <i class="fa-solid fa-bars-staggered fa-xl px-1 py-2"></i>
             </button>
             <img src="{{@asset('favicon.ico')}}" class="h-8 ms-1" alt="" srcset="">
+        </a>
+        <a href="{{ route('dashboard') }}">
             <span class="self-center text-xl font-semibold ms-2">LibroHala</span>
         </a>
     </div>
