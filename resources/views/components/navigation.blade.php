@@ -1,5 +1,5 @@
 <nav class="fixed top-0 z-50 w-full bg-sky-700 text-white border-slate-600">
-    <div class="flex py-3">
+    <div class="flex py-3 items-center">
         <a class="flex ms-2">
             <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar"
                 type="button"
@@ -10,7 +10,7 @@
             <img src="{{@asset('favicon.ico')}}" class="h-8 ms-1" alt="" srcset="">
         </a>
         <a href="{{ route('dashboard') }}">
-            <span class="self-center text-xl font-semibold ms-2">LibroHala</span>
+            <span class="text-2xl font-semibold ms-2">LibroHala</span>
         </a>
     </div>
 </nav>

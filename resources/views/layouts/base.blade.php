@@ -16,7 +16,7 @@
         <div class="flex">
             <a href="{{ route('welcome') }}" class="flex">
                 <img src="{{@asset('favicon.ico')}}" class="h-8 ms-1" alt="" srcset="">
-                <span class="ms-2 self-center text-xl font-semibold">LibroHala</span>
+                <span class="ms-2 self-center text-3xl font-semibold">LibroHala</span>
             </a>
         </div>
 
