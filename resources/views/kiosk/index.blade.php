@@ -1,12 +1,12 @@
 @extends('layouts.base')
 
 @section('body')
-<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-sky-100">
+<div class="min-h-screen flex flex-col justify-center items-center pt-6 bg-sky-100">
     <div>
         <img src="{{@asset('favicon.ico')}}" alt="" srcset="" class="h-32">
     </div>
     <div
-        class="w-full sm:max-w-lg mt-6 px-10 py-10 bg-sky-100 shadow-md border-4 border-green-700 overflow-hidden sm:rounded-lg text-center">
+        class="w-full w-5/6 md:max-w-xl m-6 px-10 py-10 bg-sky-100 shadow-md border-4 border-green-700 overflow-hidden rounded-lg text-center">
         <p class="font-bold text-2xl text-center pb-8">Check In & Check Out</p>
 
         @if (session()->has('isSuccess'))
