@@ -45,7 +45,7 @@ Route::controller(VisitController::class)->group(function () {
 
 // Fallback to make sure mistyped url still leads you to the welcome page.
 Route::fallback(function () {
-    return view('welcome');
+    return redirect('/');
 });
 
 require __DIR__ . '/auth.php';
