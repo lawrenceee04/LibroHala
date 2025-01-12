@@ -30,6 +30,10 @@
                     <div class="font-light">Admin</div>
                 </div>
             </a>
+            <x-navigation-button>
+                <x-slot name="link">{{ route('dashboard') }}</x-slot>
+                <x-slot name="name">Dashboard</x-slot>
+            </x-navigation-button>
             <a href="/dashboard"
                 class="px-6 py-3 {{ request()->is('dashboard') ? 'font-semibold bg-sky-500' : 'hover:font-semibold hover:bg-sky-500' }} ">Dashboard</a>
             <button type="button"
